@@ -1,219 +1,73 @@
-<a id="readme-top"></a>
+# Multichain Data Observatory
 
-<p align="center">
-  <img src="public/brand/omnia-eye.png" width="84" alt="OMNIA EYE" />
-</p>
+An interactive interface for inspecting multichain observations, source context and relationships in a Three.js visualization.
 
-<h1 align="center">JEV Neural Data Stream</h1>
+![review](https://img.shields.io/badge/review-private-374151) ![primary](https://img.shields.io/badge/primary-TypeScript-2563EB) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Douglas%20Silva-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/douglas-silva-data-analyst/)
 
-<p align="center">
-  <strong>Multichain intelligence infrastructure for the OMNIA EYE field.</strong><br />
-  A traceable path from network observation to visual context.
-</p>
+[Overview](#overview) · [Architecture](#architecture) · [Setup](#setup) · [Validation](#validation) · [Roadmap](#roadmap) · [Review notes](docs/REVIEW.md)
 
-<p align="center">
-  <a href="#architecture">Architecture</a> ·
-  <a href="#jev-neural-graph">JEV Neural Graph</a> ·
-  <a href="#intelligence-field">Intelligence field</a> ·
-  <a href="#research-foundations">Research</a> ·
-  <a href="#engineering">Engineering</a> ·
-  <a href="#documentation">Documentation</a>
-</p>
+## Overview
 
----
+- Network observations retain identity, timestamps and source references.
+- Interactive views expose linked market and social context.
+- A local preview server and private-preview build path are provided.
 
-## The field
+**Technology:** TypeScript · JavaScript · React · Three.js · Vite · Node.js
 
-JEV Neural Data Stream is the intelligence surface behind OMNIA EYE’s multichain observatory. It converts normalized network observations and linked social context into a living Three.js field where movement, proximity, scale, and traceability carry meaning.
-
-The system is designed around a simple principle: an observation should remain attributable as it moves from capture to context. Token identity, market fields, source links, capture time, and evidence references retain distinct roles throughout the route.
-
-```text
-NETWORK SIGNALS
-      │
-      ▼
-CAPTURE ADAPTERS ──► NORMALIZATION ──► EVIDENCE ENVELOPE
-                                                │
-                                                ▼
-SOCIAL CONTEXT ◄── LINK RESOLUTION ◄── JEV NEURAL ROUTING
-                                                │
-                                                ▼
-                                  OMNIA EYE INTELLIGENCE FIELD
-```
+**Persistence and data:** Observation envelopes and client-side state drive visualization. Database references in individual adapters should not be interpreted as a complete bundled backend deployment.
 
 ## Architecture
 
-JEV is organized as a set of explicit boundaries rather than a visual layer that guesses at data.
-
-| Layer | Responsibility |
-| --- | --- |
-| **Network lanes** | Preserve the chain identity of Robinhood Chain, BSC, and Solana observations. |
-| **Normalization** | Convert incoming records into a stable token and field shape. |
-| **Evidence envelope** | Keep capture identity, capture hash, timestamps, and source paths attached to the observation. |
-| **Neural routing** | Classify fields into interpretable zones and route changes through the field. |
-| **Social trace** | Resolve captured links into token-level context while retaining the originating reference. |
-| **Intelligence field** | Present an interactive spatial view where organism scale follows market-cap bands and tracked social context is visible. |
-
-The browser is intentionally a presentation boundary. Collection, authorization, rate control, and source-specific normalization belong to the connector boundary outside the field.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## JEV Neural Graph
-
-The JEV Neural Graph is the relationship system beneath the field. It treats every captured item as a time-bound event and constructs an inspectable graph from typed nodes, typed edges, and immutable evidence references.
-
 ```text
-                         ┌──────────────┐
-                         │   NARRATIVE  │
-                         └──────┬───────┘
-                                │ belongs_to
-┌──────────┐ captured  ┌────────▼────────┐  mentions  ┌────────────────┐
-│  TOKEN   ├──────────►│   OBSERVATION   ├───────────►│ SOCIAL PROFILE │
-└────┬─────┘           └────────┬────────┘            └───────┬────────┘
-     │                           │ links                         │ shares
-     │                           ▼                               ▼
-     │                    ┌────────────┐                  ┌──────────┐
-     └───────────────────►│   SOURCE   │◄─────────────────│  POST    │
-                          └────────────┘                  └──────────┘
+Observation adapters → normalized evidence envelope → React views → Three.js scene and detail inspection
 ```
 
-### Core properties
-
-| Property | JEV behavior |
+| Location | Review focus |
 | --- | --- |
-| **Temporal** | every event is ordered by its capture and occurrence time; activations decay rather than disappear arbitrarily. |
-| **Heterogeneous** | tokens, fields, sources, profiles, and narratives carry distinct node semantics. |
-| **Evidence-bound** | nodes and edges retain capture IDs, payload hashes, source paths, and source URLs where supplied. |
-| **Inspectable** | graph paths, communities, strongest links, and evidence trails are directly queryable. |
-| **Neural projection** | graph activity resolves into regions, weighted synapses, and deterministic 3D anchors for the JEV field. |
-| **Laya-ready** | context packets are bounded, typed, and include only evidence present in the selected subgraph. |
+| [`src/main.tsx`](src/main.tsx) | Source/configuration inspected for scope and structure |
+| [`server.mjs`](server.mjs) | Source/configuration inspected for scope and structure |
+| [`docs/DATA-CONTRACT.md`](docs/DATA-CONTRACT.md) | Source/configuration inspected for scope and structure |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Source/configuration inspected for scope and structure |
+| [`package.json`](package.json) | Source/configuration inspected for scope and structure |
 
-### Neural processing path
+Internal package and module names are retained where changing them would affect imports or compatibility. This descriptive repository name does not imply a completed package/API migration.
 
-```mermaid
-flowchart LR
-  E[Typed event] --> G[JEV graph ingestion]
-  G --> M[Temporal memory]
-  G --> Q[Evidence and path queries]
-  M --> P[Neural projection]
-  P --> F[Three.js field]
-  Q --> L[Laya evidence packet]
-  L --> R[Typed context read]
-  R --> F
-```
+## Setup
 
-## Research foundations
+Use a current Node.js version compatible with the package lock. Install with npm ci --ignore-scripts; inspect package.json before selecting npm test, npm run typecheck or a preview build.
 
-JEV is engineered around established work in temporal graphs, dynamic graph representation, graph explainability, and the provenance constraints of language-model-assisted knowledge systems.
+Start from an isolated environment. Use `.env.example` when present and inspect the configuration loader: an example file is not necessarily loaded automatically. Runtime databases, real account sessions and private credentials are not bundled. Live integration prerequisites are separate from local tests.
 
-| Research direction | JEV implementation decision |
-| --- | --- |
-| **Temporal graph memory** | Node activation is updated from event order and decays with time, following the event-and-memory framing of Temporal Graph Networks. |
-| **Time-varying topology** | Connections are explicit events with timestamps and can be examined as changing network structure. |
-| **Dynamic embeddings** | Projection separates graph identity from its spatial arrangement, allowing the field to change without changing the source graph. |
-| **Explainable graph reasoning** | Every visible route can resolve back to node IDs, edge IDs, capture IDs, and source paths. |
-| **LLM + knowledge graph discipline** | Laya reads consume bounded graph packets and must cite evidence IDs available in that packet. |
+## Validation
 
-Selected research:
+Static parsing checked 0 Python files and 4 strict JSON files. Python syntax errors: 0; JSON errors: 0. No functional test/build result is claimed for this preparation.
 
-- Rossi et al., [Temporal Graph Networks for Deep Learning on Dynamic Graphs](https://arxiv.org/abs/2006.10637), 2020.
-- Casteigts et al., [Time-Varying Graphs and Dynamic Networks](https://arxiv.org/abs/1012.0009), 2010.
-- Barros et al., [A Survey on Embedding Dynamic Graphs](https://arxiv.org/abs/2101.01229), 2021.
-- Pan et al., [Large Language Models and Knowledge Graphs: Opportunities and Challenges](https://arxiv.org/abs/2308.06374), 2023.
-- Baldassarre and Azizpour, [Explainability Techniques for Graph Convolutional Networks](https://arxiv.org/abs/1905.13686), 2019.
-- Li and Fan, [Explainable Heterogeneous Anomaly Detection in Financial Networks via Adaptive Expert Routing](https://arxiv.org/abs/2510.17088), 2025.
+Available test scripts are inventoried in [the review notes](docs/REVIEW.md). Choose offline checks before operating any integration.
 
-The research references inform the system design. They do not represent performance claims, training results, or an endorsement by their authors.
+These results apply to the selected checks on the preparation copy. They do not establish deployment readiness, full coverage, live provider availability or measured performance. CI definitions, when present under `docs/ci-templates/`, are inactive review templates; no remote CI badge is claimed.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Limits and current status
 
-## Intelligence field
+Existing confidentiality notices remain applicable. Some binary visual assets and live data access are omitted from this review copy. A visualization does not prove a live ingestion pipeline.
 
-The interface treats the field as an instrument panel, not a decorative chart.
+This private snapshot is for code and portfolio review. Generated runtime material and unreviewed binary assets may be excluded. [Review notes](docs/REVIEW.md) record preparation scope, findings and outstanding validation.
 
-- **Neural organism** — a routing sculpture that groups fields such as market, holders, lifecycle, risk, and social context.
-- **Multichain lanes** — chain-colored streams carry observations from their network boundary into JEV.
-- **Token universe** — organisms are positioned in temporal order, scaled across distinct market-cap bands, and retain their token identity.
-- **Social trace** — tracked social references resolve into compact source context, profile identity, follower count where supplied, and original links.
-- **Continuous motion** — particles flow continuously through the field; state transitions appear as deliberate, time-spread pulses.
-- **Decision vocabulary** — JEV labels operations such as `BUY`, `SKIP`, `HOLD`, `HOLD MOONBAG`, `PROFIT`, `TP1`–`TP5`, and `SL` as interface language. These labels are not trading instructions.
+## Roadmap
 
-## Engineering
+- [ ] Run the declared Node tests, typecheck and private-preview build.
+- [ ] Provide a synthetic dataset with documented source contracts.
+- [ ] Review asset attribution and confidential integration boundaries before public release.
 
-The repository is deliberately compact and readable:
+## History and attribution
 
-```text
-src/
-├── agent-trading/       # JEV field, routing, evidence, trace, and motion
-├── jev-neural/          # temporal graph, provenance, projection, and Laya contracts
-├── components/          # reusable media and platform primitives
-├── main.tsx             # application composition
-└── media.mjs            # media normalization
+21 existing commits were retained after path/content filtering. Original authors and author/committer dates were retained; commit hashes may change. Upstream commits are not presented as new work by the maintainer.
 
-public/
-├── brand/               # OMNIA visual identity
-└── assets/              # platform marks used by trace context
+No open-source license is granted by this preparation. A license and attribution review is required before public redistribution.
 
-scripts/                 # deterministic behavioral checks
-```
+## Maintainer and feedback
 
-The client uses React, TypeScript, Vite, and Three.js. The service boundary is native Node.js and exposes a health endpoint plus bounded internal passthroughs for the normalized capture and recent social-link envelopes.
+Douglas de Oliveira Silva · [GitHub](https://github.com/qquante) · [LinkedIn](https://www.linkedin.com/in/douglas-silva-data-analyst/)
 
-### JEV Neural Graph modules
+For this private review, report reproducible issues with a minimal fixture and the exact check output. Keep account data, credentials and generated sensitive reports out of issues and commits. Existing contribution guidelines apply where present.
 
-```text
-jev-neural/
-├── domain.ts          typed node, edge, evidence, event, and read vocabulary
-├── event-factory.ts   normalized token → graph event construction
-├── graph.ts           ingestion, adjacency, paths, and temporal snapshots
-├── temporal-memory.ts activation propagation and decay
-├── relations.ts       relation construction and shared-attribute links
-├── query.ts           communities, strongest edges, and evidence trails
-├── projection.ts      graph → neural 3D anchors
-├── topology.ts        neural regions and weighted synapses
-├── laya-contract.ts   bounded context packet and typed read validation
-└── evaluation.ts      read agreement and evidence coverage metrics
-```
-
-### Core routing model
-
-```ts
-// A routed observation retains the evidence that introduced it.
-type NeuralObservation = {
-  tokenKey: string;
-  captureId: string;
-  receivedAt: string;
-  field: {
-    key: string;
-    zone: 'Market' | 'Holders' | 'Risk' | 'Lifecycle' | 'Social';
-    path: string;
-  };
-};
-```
-
-### Local development
-
-```bash
-npm install
-npm run dev
-```
-
-```bash
-npm run test
-npm run typecheck
-npm run build
-```
-
-## Documentation
-
-- [Architecture](docs/ARCHITECTURE.md) — system boundaries, data movement, and design decisions.
-- [JEV Neural Graph](docs/JEV-NEURAL-GRAPH.md) — temporal graph, provenance, activation, and Laya context contract.
-- [Data contract](docs/DATA-CONTRACT.md) — normalized envelopes and provenance invariants.
-- [Security](docs/SECURITY.md) — trust boundaries and reporting path.
-- [Engineering references](docs/REFERENCES.md) — standards and technical sources that inform the system.
-
-## OMNIA EYE
-
-JEV Neural Data Stream is proprietary software maintained by OMNIA EYE. The repository contains the presentation and routing layer; credentials, private connector configuration, raw capture storage, and source-specific access controls are maintained outside version control.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+**Topics:** `typescript`, `react`, `threejs`, `data-visualization`, `blockchain`, `vite`
