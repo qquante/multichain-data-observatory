@@ -30,4 +30,4 @@ Existing confidentiality notices remain applicable. Some binary visual assets an
 
 ## License
 
-No open-source license has been granted. Redistribution terms remain to be defined.
+Project-authored source code is licensed under the [MIT License](LICENSE). Third-party components and datasets retain their respective rights and licenses.
